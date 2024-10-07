@@ -1,0 +1,26 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 450,
+    "title": "Shark attacks across Australia by State",
+    "data": {
+        "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/w10_homework/data/Australian-Shark-Incident-Database-Public-Version.csv"
+    },
+    "mark": "bar",
+    "encoding": {
+        "x":{
+            "field": "State",
+            "type": "nominal",
+            "title": "State"
+        },
+        "y":{
+            "aggregate": "count",
+            "type": "quantitative",
+            "title": "No of incidents"
+        },
+        "color":{
+            "field":"State",
+            "type": "nominal"
+        }
+    }
+}

@@ -1,0 +1,26 @@
+#id-title-div {
+	max-width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+  }
+
+
+#map {
+	margin: auto;
+	/* top:100px;
+	bottom: 100px; 
+	left: 100px;
+	right: 100px; */
+	/* height: 1000px;
+	width: 800px; */
+}
+
+#bar_chart {
+	margin: auto;
+	/* top:100px;
+	bottom: 100px; 
+	left: 100px;
+	right: 100px; */
+	/* height: 1000px;
+	width: 800px; */
+}
