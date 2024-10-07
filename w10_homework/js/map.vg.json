@@ -1,0 +1,14 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 450,
+    "title": "Shark attacks across Australia from 1791 and 2022",
+    "data": {
+        "url": ""
+    },
+    "mark":"",
+    "encoding": {
+        "x"
+
+    }
+}
