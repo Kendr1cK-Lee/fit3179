@@ -13,7 +13,7 @@
           "mark": {"type": "geoshape", "fill": "lightblue", "stroke": "lightblue"}
         },
         {
-          "data": {
+            "data": {
             "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/w10_homework/js/output_without_graticules.json",
             "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
           },
@@ -23,6 +23,20 @@
             "data": {
               "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/w10_homework/data/Australian-Shark-Incident-Database-Public-Version.csv"
             },
+            "params": [
+                {
+                    "name": "State_selection",
+                    "bind": {
+                        "input": "select",
+                        "options": [null, "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"],
+                        "labels": ["Show All", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"],
+                        "name": "State Selection:"
+                    }
+                }
+            ],
+            "transform": [
+                {"filter": "State_selection == null || datum.State == State_selection"}
+            ],
             "mark": {"type": "circle"},
             "encoding": {
                 "longitude": {
@@ -33,6 +47,7 @@
                     "field": "Latitude",
                     "type": "quantitative"
                 },
+                "opacity":{"value": 0.6},
                 "tooltip": [
                     {"field": "Incident_year", "type": "quantitative", "title": "Incident Year"},
                     {"field":"State", "type": "nominal", "title": "State"}, 

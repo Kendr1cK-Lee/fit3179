@@ -23,7 +23,7 @@
             "title": "No of incidents"
         },
         "color": {
-            "field": "Incident_month",
+            "field": "Incident month",
             "type": "nominal"
         }
     }
