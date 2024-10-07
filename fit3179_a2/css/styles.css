@@ -7,23 +7,68 @@
 #id-intro-div {
 	margin: auto;
 	width: 75%;
-	border: 3px solid green;
+	/* border: 3px solid green; */
 	padding: 10px;
 }
 
+#map-container {
+	width: 100%; /* or set a specific width like 800px */
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
 
 
 
 
-
-
-
-
-#symbol_map {
-	top:100px;
+#map {
+	margin: auto;
+	/* top:100px;
 	bottom: 100px; 
 	left: 100px;
-	right: 100px;
+	right: 100px; */
 	/* height: 1000px;
 	width: 800px; */
 }
+
+#bar_chart {
+	margin: auto;
+	/* top:100px;
+	bottom: 100px; 
+	left: 100px;
+	right: 100px; */
+	/* height: 1000px;
+	width: 800px; */
+}
+
+
+#pie_chart {
+	margin: auto;
+	/* top:100px;
+	bottom: 100px; 
+	left: 100px;
+	right: 100px; */
+	/* height: 1000px;
+	width: 800px; */
+}
+
+
+
+.split-container {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 20px;
+  }
+
+  /* Left section styling */
+  .left-section {
+	flex: 1; /* Takes up equal space */
+	padding: 10px;
+  }
+
+  /* Right section styling */
+  .right-section {
+	flex: 1; /* Takes up equal space */
+	padding: 10px;
+  }

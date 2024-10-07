@@ -36,18 +36,56 @@
         </p>
     </div>
 
+    <div id="map-container">
+        <div id="map"></div>
+    </div>
+
+    <div class="split-container">
+        <div class="left-section">
+          <p>This is a paragraph of text on the left. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+    
+        <div class="right-section">
+          <div id="pie_chart"></div>
+        </div>
+      </div>
 
 
+    <div id="id-intro-div">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Mauris ac nibh tellus. Mauris lectus augue, mollis id porttitor vitae, iaculis eu orci.
+            Sed nisi erat, posuere in pretium vel, pretium ac arcu.
+            Baby shark doo doo doo
+        </p>
+    </div>
 
-    <div id="symbol_map"></div>
+    <div id="map-container">
+        <div id="bar_chart"></div>
+    </div>
+
+
 
 
     <script type="text/javascript">
-        var spec2 = "js/map.vg.json";
-        vegaEmbed('#symbol_map', spec2).then(function(result) {
+        var chart1 = "js/map.vg.json";
+        vegaEmbed('#map', chart1).then(function(result) {
           // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
-      </script>
-    
+    </script>
+
+    <script type="text/javascript">
+        var chart2 = "js/bar_chart.vg.json";
+        vegaEmbed('#bar_chart', chart2).then(function(result) {
+
+        }).catch(console.error);
+    </script>
+
+    <script type="text/javascript">
+        var chart3 = "js/pie_chart.vg.json";
+        vegaEmbed('#pie_chart', chart3).then(function(result) {
+
+        }).catch(console.error);
+    </script>
 </body>
 </html>
