@@ -10,14 +10,44 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 
     <script src="vega_lite_vis.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
 
-    <title>Document</title>
+
+    <title>Shark attacks across Australia from 1791 to 2022</title>
 </head>
 
 
 <body>
-    <h1>First Vega-Lite Graph</h1>
-    <div><p>Hello</p></div>
+    <div id="id-title-div">
+        <h1>Shark attacks across Australia from 1791 to 2022</h1>
+    </div>
+
+    <div id="id-intro-div">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Mauris ac nibh tellus. Mauris lectus augue, mollis id porttitor vitae, iaculis eu orci.
+            Sed nisi erat, posuere in pretium vel, pretium ac arcu.
+            Aliquam non purus elit. In posuere, augue nec tempus rhoncus, metus mi faucibus felis, ut porta sem diam eu nisi.
+            Ut lacus sapien, consectetur vel elit eget, egestas ullamcorper ligula.
+            Phasellus molestie, felis a maximus consectetur, erat dolor iaculis massa, nec ullamcorper tortor risus at nisi.
+            Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            Nulla vehicula dolor at magna eleifend, eu finibus est pulvinar.
+            Nullam nec risus dictum, fringilla orci sit amet, dictum tellus. In quis leo ipsum.
+        </p>
+    </div>
+
+
+
+
+    <div id="symbol_map"></div>
+
+
+    <script type="text/javascript">
+        var spec2 = "js/map.vg.json";
+        vegaEmbed('#symbol_map', spec2).then(function(result) {
+          // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+      </script>
     
 </body>
 </html>
