@@ -9,7 +9,7 @@
     "mark": "bar",
     "encoding": {
         "x": {
-            "field": "Incident_month",
+            "field": "INCIDENT_MONTH",
             "type": "nominal",
             "title": "Month",
             "sort": [

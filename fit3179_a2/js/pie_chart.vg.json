@@ -14,12 +14,12 @@
             "title": "No of incidents"
         },
         "color": {
-            "field": "State",
+            "field": "STATE",
             "type": "nominal",
             "title": "State"
         },
         "tooltip": [
-            {"field": "State", "type": "nominal", "title": "State"},
+            {"field": "STATE", "type": "nominal", "title": "State"},
             {"aggregate": "count", "type": "quantitative", "title": "No of Incidents"}
         ]
     }
