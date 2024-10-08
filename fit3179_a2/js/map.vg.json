@@ -30,14 +30,14 @@
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/w10_homework/js/output_without_graticules.json",
+        "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/js/output_without_graticules.json",
         "format": {"type": "topojson", "feature": "au_eez_pol_april2022"}
       },
       "mark": {"type": "geoshape", "fill": "lightblue", "stroke": "lightblue"}
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/w10_homework/js/output_without_graticules.json",
+        "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/js/output_without_graticules.json",
         "format": {
           "type": "topojson",
           "feature": "ne_10m_admin_1_states_provinces"
@@ -47,26 +47,26 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/w10_homework/data/Australian-Shark-Incident-Database-Public-Version.csv"
+        "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version.csv"
       },
       "transform": [
-        {"filter": "State_selection == null || datum.State == State_selection"},
-        {"filter": "datum.Incident_year <= Year_progression"}
+        {"filter": "State_selection == null || datum.STATE == State_selection"},
+        {"filter": "datum.INCIDENT_YEAR <= Year_progression"}
       ],
       "mark": {"type": "circle"},
       "encoding": {
-        "longitude": {"field": "Longitude", "type": "quantitative"},
-        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "longitude": {"field": "LONGITUDE", "type": "quantitative"},
+        "latitude": {"field": "LATITUDE", "type": "quantitative"},
         "opacity": {"value": 0.6},
         "tooltip": [
           {
-            "field": "Incident_year",
+            "field": "INCIDENT_YEAR",
             "type": "quantitative",
             "title": "Incident Year"
           },
-          {"field": "State", "type": "nominal", "title": "State"},
+          {"field": "STATE", "type": "nominal", "title": "State"},
           {
-            "field": "Victim_injury",
+            "field": "VICTIM_INJURY",
             "type": "nominal",
             "title": "Victim's Status"
           }
