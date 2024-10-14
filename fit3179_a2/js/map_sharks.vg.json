@@ -82,18 +82,8 @@
           "field": "SHARK_COMMON_NAME",
           "type": "nominal",
           "scale": {
-            "domain": [
-              "Bull Shark",
-              "Great White Shark",
-              "Tiger Shark",
-              "Wobbegong Shark"
-            ],
-            "range": [
-              "#8B4513",
-              "#008080",
-              "#00008B",
-              "#800080"
-            ]
+            "domain": ["Bull Shark", "Great White Shark", "Tiger Shark", "Wobbegong Shark"],
+            "range": ["#8B4513", "#008080", "#00008B", "#800080"]
           },
           "title": "Shark Species"
         },
