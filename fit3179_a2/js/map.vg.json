@@ -2,11 +2,11 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 800,
   "height": 450,
-  "title": "Shark attacks across Australia from 1791 to 2024",
+  "title": "Shark Attacks across Australia from 1791 to 2024",
   "projection": {"type": "mercator"},
   "params": [
     {
-      "name": "State_selection",
+      "name": "state_selection",
       "bind": {
         "input": "select",
         "options": [null, "New South Wales (NSW)", "Northern Territory (NT)", "Queensland (QLD)", "South Australia (SA)", "Tasmania (TAS)", "Victoria (VIC)", "Western Australia (WA)"],
@@ -15,7 +15,16 @@
       }
     },
     {
-      "name": "Year_progression",
+      "name": "injury_selection",
+      "bind": {
+        "input": "select",
+        "options": [null, "Uninjured", "Injured", "Fatal"],
+        "labels": ["All", "Uninjured", "Injured", "Fatal"],
+        "name": "Victim Status Selection:"
+      }
+    },
+    {
+      "name": "year_progression",
       "value": 1791,
       "bind": {
         "input": "range",
@@ -50,10 +59,15 @@
         "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version.csv"
       },
       "transform": [
-        {"filter": "State_selection == null || datum.STATE == State_selection"},
-        {"filter": "datum.INCIDENT_YEAR <= Year_progression"}
+        {"filter": "state_selection == null || datum.STATE == state_selection"},
+        {"filter": "injury_selection == null || datum.VICTIM_INJURY == injury_selection"},
+        {"filter": "datum.INCIDENT_YEAR == year_progression"}
       ],
-      "mark": {"type": "circle"},
+      "mark": {
+        "type": "circle",
+        "stroke": "black",
+        "strokeWidth": 0.7
+      },
       "encoding": {
         "longitude": {"field": "LONGITUDE", "type": "quantitative"},
         "latitude": {"field": "LATITUDE", "type": "quantitative"},
@@ -78,12 +92,11 @@
           "value": 0.8
         },
         "tooltip": [
-          {"field": "UIN", "type": "quantitative", "title": "UIN"},
           {"field": "INCIDENT_MONTH", "type": "nominal", "title": "Incident Month"},
           {"field": "INCIDENT_YEAR", "type": "quantitative", "title": "Incident Year"},
           {"field": "STATE", "type": "nominal", "title": "State"},
-          {"field": "LATITUDE", "type": "quantitative", "title": "Latitude"},
-          {"field": "LONGITUDE", "type": "quantitative", "title": "Longitude"},
+          {"field": "LATITUDE", "type": "quantitative", "format": ".7f", "title": "Latitude"},
+          {"field": "LONGITUDE", "type": "quantitative", "format": ".7f", "title": "Longitude"},
           {"field": "VICTIM_INJURY", "type": "nominal", "title": "Victim Status"}
         ]
       }
