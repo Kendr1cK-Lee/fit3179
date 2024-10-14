@@ -67,6 +67,14 @@
                 <div id="map_shark_chart"></div>
             </div>
 
+            <div class="class-div" id="id-pictogram-chart">
+                <div id="picto_chart"></div>
+            </div>
+
+            <div class="class-div" id="id-boxplot-chart">
+                <div id="boxplot_chart"></div>
+            </div>
+
             <div class="class-div" id="id-footer">
                 <p>
                     This data visualization was created using data obtained from the <a href="https://taronga.org.au/conservation-and-science/australian-shark-incident-database">Taronga Conservation Society Australia</a>, which has been cleaned and processed to produce accurate statistical information.
@@ -118,6 +126,20 @@
     <script type="text/javascript">
         var chart6 = "js/map_sharks.vg.json";
         vegaEmbed('#map_shark_chart', chart6).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+    </script>
+
+    <script type="text/javascript">
+        var chart7 = "js/pictogram.vg.json";
+        vegaEmbed('#picto_chart', chart7).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+    </script>
+
+    <script type="text/javascript">
+        var chart8 = "js/boxplot.vg.json";
+        vegaEmbed('#boxplot_chart', chart8).then(function(result) {
         // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
     </script>
