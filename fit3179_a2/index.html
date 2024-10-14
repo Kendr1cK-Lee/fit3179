@@ -13,63 +13,76 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
 
 
-    <title>Shark attacks across Australia from 1791 to 2022</title>
+    <title>Shark attacks across Australia from 1791 to 2024</title>
 </head>
 
-
 <body>
-    <div id="id-title-div">
-        <h1>Shark attacks across Australia from 1791 to 2022</h1>
-    </div>
+        <div class="class-div" id="id-page">
 
-    <div id="id-intro-div">
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Mauris ac nibh tellus. Mauris lectus augue, mollis id porttitor vitae, iaculis eu orci.
-            Sed nisi erat, posuere in pretium vel, pretium ac arcu.
-            Aliquam non purus elit. In posuere, augue nec tempus rhoncus, metus mi faucibus felis, ut porta sem diam eu nisi.
-            Ut lacus sapien, consectetur vel elit eget, egestas ullamcorper ligula.
-            Phasellus molestie, felis a maximus consectetur, erat dolor iaculis massa, nec ullamcorper tortor risus at nisi.
-            Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Nulla vehicula dolor at magna eleifend, eu finibus est pulvinar.
-            Nullam nec risus dictum, fringilla orci sit amet, dictum tellus. In quis leo ipsum.
-        </p>
-    </div>
+            <div class="class-div" id="id-header">
+                <h1>Shark attacks across Australia from 1791 to 2024</h1>
+            </div>
 
-    <div id="map-container">
-        <div id="map"></div>
-    </div>
+            <div class="class-div" id="id-intro-div">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Mauris ac nibh tellus. Mauris lectus augue, mollis id porttitor vitae, iaculis eu orci.
+                    Sed nisi erat, posuere in pretium vel, pretium ac arcu.
+                    Aliquam non purus elit. In posuere, augue nec tempus rhoncus, metus mi faucibus felis, ut porta sem diam eu nisi.
+                    Ut lacus sapien, consectetur vel elit eget, egestas ullamcorper ligula.
+                    Phasellus molestie, felis a maximus consectetur, erat dolor iaculis massa, nec ullamcorper tortor risus at nisi.
+                    Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                    Nulla vehicula dolor at magna eleifend, eu finibus est pulvinar.
+                    Nullam nec risus dictum, fringilla orci sit amet, dictum tellus. In quis leo ipsum.
+                </p>
+            </div>
 
-    <div class="split-container">
-        <div class="left-section">
-          <p>This is a paragraph of text on the left. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="class-div" id="id-map">
+                <div id="map_chart"></div>
+            </div>
+
+            <div class="split-div">
+                <div class="left-section">
+                  <p>This is a paragraph of text on the left. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            
+                <div class="right-section">
+                  <div id="pie_chart"></div>
+                </div>
+            </div>
+
+            <div class="class-div" id="id-histogram">
+                <div id="stackedbar_chart"></div>
+            </div>
+
+            <div class="class-div" id="id-shark-bar-chart">
+                <div id="sharkbar_chart"></div>
+            </div>
+
+            <div class="class-div" id="id-line-chart">
+                <div id="line_chart"></div>
+            </div>
+
+            <div class="class-div" id="id-map-shark-chart">
+                <div id="map_shark_chart"></div>
+            </div>
+
+            <div class="class-div" id="id-footer">
+                <p>
+                    This data visualization was created using data obtained from the <a href="https://taronga.org.au/conservation-and-science/australian-shark-incident-database">Taronga Conservation Society Australia</a>, which has been cleaned and processed to produce accurate statistical information.
+                    <br>
+                    Made by Kendrick Lee on 8 October 2024.
+                </p>
+            </div>
         </div>
-    
-        <div class="right-section">
-          <div id="pie_chart"></div>
-        </div>
-      </div>
-
-
-    <div id="id-intro-div">
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Mauris ac nibh tellus. Mauris lectus augue, mollis id porttitor vitae, iaculis eu orci.
-            Sed nisi erat, posuere in pretium vel, pretium ac arcu.
-            Baby shark doo doo doo
-        </p>
-    </div>
-
-    <div id="map-container">
-        <div id="bar_chart"></div>
-    </div>
 
 
 
 
+        
     <script type="text/javascript">
         var chart1 = "js/map.vg.json";
-        vegaEmbed('#map', chart1).then(function(result) {
+        vegaEmbed('#map_chart', chart1).then(function(result) {
           // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
     </script>
@@ -82,9 +95,30 @@
     </script>
 
     <script type="text/javascript">
-        var chart3 = "js/pie_chart.vg.json";
-        vegaEmbed('#pie_chart', chart3).then(function(result) {
+        var chart3 = "js/stacked_bar_chart.vg.json";
+        vegaEmbed('#stackedbar_chart', chart3).then(function(result) {
 
+        }).catch(console.error);
+    </script>
+
+    <script type="text/javascript">
+        var chart4 = "js/shark_bar_chart.vg.json";
+        vegaEmbed('#sharkbar_chart', chart4).then(function(result) {
+
+        }).catch(console.error);
+    </script>
+
+    <script type="text/javascript">
+        var chart5 = "js/line_chart.vg.json";
+        vegaEmbed('#line_chart', chart5).then(function(result) {
+
+        }).catch(console.error);
+    </script>
+
+    <script type="text/javascript">
+        var chart6 = "js/map_sharks.vg.json";
+        vegaEmbed('#map_shark_chart', chart6).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
     </script>
 </body>

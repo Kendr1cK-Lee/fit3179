@@ -1,17 +1,78 @@
+/*class selectors*/
+.class-div {
+	/* height: auto;
+	width: auto; */
+	/* max-width: auto;
+	max-height: auto; */
+	text-align: center;
+}
+
+
+/*id selectors*/
+#id-page {
+	border: 10px solid purple;
+	/* max-width: none;
+	max-height: none; */
+	/* margin:0 auto; */
+	/* padding:5px; */
+	/* position:relative; */
+  }
+
+#id-header {
+	border: 2px solid red;
+	/* height: auto;
+	width: auto; */
+  }
+
+
+#id-intro-div {
+	height: auto;
+	padding: 20px;
+	border: 3px solid green;
+	text-align: left;
+	max-height: fit-content;
+}
+
+#id-split-3-div {
+	display: flex;
+	/* justify-content: space-between; */
+	max-width: none;
+	/* margin-top: 20px; */
+}
+
+#id-footer {
+	border:2px solid red;
+	/* background-color: lightgrey; */
+	color: black;
+	font-weight: bold;
+	/* max-width: none;
+	max-height: none; */
+  }
+
+
+
+
+
+.column {
+	float: left;
+	padding: 10px;
+	height: 300px; /* Should be removed. Only for demonstration */
+  }
+
+
+#id-main-div {
+	/* border: 3px solid black; */
+}
+
 #id-title-div {
 	max-width: fit-content;
 	margin-left: auto;
 	margin-right: auto;
+	border: 3px solid green;
   }
 
-#id-intro-div {
-	margin: auto;
-	width: 75%;
-	/* border: 3px solid green; */
-	padding: 10px;
-}
 
-#map-container {
+#id-map-div {
 	width: 100%; /* or set a specific width like 800px */
 	display: flex;
 	justify-content: center;
@@ -20,8 +81,8 @@
 
 
 
-
-#map {
+/*chart selectors*/
+#map_chart {
 	margin: auto;
 	/* top:100px;
 	bottom: 100px; 
@@ -54,7 +115,7 @@
 
 
 
-.split-container {
+.split-div {
 	display: flex;
 	justify-content: space-between;
 	width: 100%;

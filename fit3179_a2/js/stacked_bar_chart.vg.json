@@ -1,0 +1,60 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 600,
+    "height": 400,
+    "title": "Total Shark Attacks by State",
+    "data": {
+      "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version.csv"
+    },
+    "params": [
+      {
+        "name": "victimstatus_selection",
+        "bind": {
+          "input": "select",
+          "options": [null, "Uninjured", "Injured", "Fatal"],
+          "labels": ["Show All", "Uninjured", "Injured", "Fatal"],
+          "name": "Victim Status Selection:"
+        }
+      }
+    ],
+    "transform": [
+      {
+        "filter": "victimstatus_selection == null || datum.VICTIM_INJURY == victimstatus_selection"
+      }
+    ],
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "aggregate": "count",
+        "type": "quantitative",
+        "title": "Number of incidents"
+      },
+      "y": {
+        "field": "STATE",
+        "type": "nominal",
+        "title": "State",
+              "sort": [
+          "Northern Territory (NT)",
+          "Tasmania (TAS)",
+          "Victoria (VIC)",
+          "South Australia (SA)",
+          "Western Australia (WA)",
+          "Queensland (QLD)",
+          "New South Wales (NSW)"
+        ]
+      },
+      "color": {
+        "field": "VICTIM_INJURY",
+        "type": "nominal",
+        "scale": {
+          "domain": ["Uninjured", "Injured", "Fatal"],
+          "range": ["#00A36C", "#FFA500", "#FF0000"]
+        },
+        "title": "Victim Status"
+      },
+      "tooltip": [
+        {"field": "STATE", "title": "State"},
+        {"aggregate": "count", "title": "Number of Incidents"}
+      ]
+    }
+  }

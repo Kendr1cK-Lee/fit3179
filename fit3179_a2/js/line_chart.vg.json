@@ -1,0 +1,35 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 450,
+    "title": "Shark Attacks Across Australia by Decade",
+    "data": {
+        "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version.csv"
+    },
+    "transform": [
+        {
+            "calculate": "floor(datum.INCIDENT_YEAR / 10) * 10",
+            "as": "Decade"
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Decade",
+            "type": "quantitative",
+            "title": "Decade"
+        },
+        "y": {
+            "aggregate": "count",
+            "type": "quantitative",
+            "title": "Number of Incidents"
+        },
+        "tooltip": [
+            {"field": "Decade", "type": "quantitative", "title": "Decade"},
+            {"aggregate": "count", "title": "Number of Incidents"}
+        ]
+    }
+}
