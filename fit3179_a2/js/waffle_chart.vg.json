@@ -1,51 +1,82 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-      "data": {
-        "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version.csv"
-      },
-      "transform": [
+    "width": 300,
+    "height": 300,
+    "title": "Distribution of Shark Incident Outcomes (Percentage)",
+    "data": {
+      "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version.csv"
+    },
+    "transform": [
       {
-        "joinaggregate": [{"op": "count", "field": "VICTIM_INJURY", "as": "total_victim_injury"}]
+        "aggregate": [{"op": "count", "as": "count"}],
+        "groupby": ["VICTIM_INJURY"]
       },
       {
-        "joinaggregate": [
-          {"op": "count", "field": "VICTIM_INJURY", "as": "total_victim_injury_grouped"}
+        "window": [{"op": "sum", "field": "count", "as": "total"}],
+        "frame": [null, null]
+      },
+      {
+        "calculate": "datum.count / datum.total * 100",
+        "as": "percentage"
+      },
+      {
+        "calculate": "if(datum.VICTIM_INJURY == 'Fatal', 0, if(datum.VICTIM_INJURY == 'Injured', 1, 2))",
+        "as": "sortOrder"
+      },
+      {
+        "window": [
+          {"op": "rank", "as": "rank"},
+          {"op": "sum", "field": "percentage", "as": "cumulative_percentage"}
         ],
-        "groupby": ["VICTIM_INJURY"]
+        "sort": [{"field": "sortOrder", "order": "ascending"}]
       },
       {
-        "calculate": "round(datum.total_victim_injury_grouped/datum.total_victim_injury * 100)",
-        "as": "percentage_of_total"
+        "calculate": "datum.cumulative_percentage - datum.percentage",
+        "as": "start"
       },
       {
-        "aggregate": [{"op": "min", "field": "percentage_of_total", "as": "P"}],
-        "groupby": ["VICTIM_INJURY"]
+        "calculate": "floor(datum.start)",
+        "as": "start_floor"
       },
-      {"calculate": "sequence(1, 100)", "as": "S"},
-      {"flatten": ["S"]},
       {
-        "window": [{"op": "row_number", "as": "id"}],
-        "sort": [{"field": "VICTIM_INJURY", "order": "descending"}]
+        "calculate": "ceil(datum.cumulative_percentage)",
+        "as": "end_ceil"
       },
-      {"calculate": "floor((datum.id - 1) / 10) + 1", "as": "row"},
-      {"calculate": "(datum.id - 1) % 10", "as": "col"}
+      {
+        "calculate": "sequence(datum.start_floor + 1, datum.end_ceil)",
+        "as": "position"
+      },
+      {"flatten": ["position"]},
+      {
+        "calculate": "floor((datum.position - 1) / 10)",
+        "as": "row"
+      },
+      {
+        "calculate": "(datum.position - 1) % 10",
+        "as": "column"
+      }
     ],
     "mark": {
-      "type": "square",
-      "size": 200,
-      "stroke": "black",
-      "strokeWidth": 0.7
+      "type": "rect",
+      "stroke": "white",
+      "strokeWidth": 2
     },
     "encoding": {
-      "x": {"field": "col", "type": "ordinal", "axis": null},
-      "y": {"field": "row", "type": "ordinal", "axis": null, "sort": "-y"},
+      "x": {"field": "column", "type": "ordinal", "axis": null},
+      "y": {"field": "row", "type": "ordinal", "axis": null, "sort": "descending"},
       "color": {
         "field": "VICTIM_INJURY",
-        "type": "nominal"
+        "type": "nominal",
+        "scale": {
+          "domain": ["Fatal", "Injured", "Uninjured"],
+          "range": ["#FF0000", "#FFA500", "#00A36C"]
+        },
+        "sort": ["Fatal", "Injured", "Uninjured"],
+        "title": "Victim Status"
       },
-        "tooltip": [
-          {"field": "VICTIM_INJURY", "title": "Victim Status"},
-          {"aggregate": "count", "title": "Number of Incidents"}
-        ]
-        }
+      "tooltip": [
+        {"field": "VICTIM_INJURY", "title": "Victim Status"},
+        {"field": "percentage", "title": "Percentage", "format": ".2f"}
+      ]
+    }
   }
