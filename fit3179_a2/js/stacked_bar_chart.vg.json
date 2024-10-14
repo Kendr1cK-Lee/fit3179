@@ -22,7 +22,11 @@
         "filter": "victimstatus_selection == null || datum.VICTIM_INJURY == victimstatus_selection"
       }
     ],
-    "mark": "bar",
+    "mark": {
+      "type": "bar",
+      "stroke": "black",
+      "strokeWidth": 1.0
+    },
     "encoding": {
       "x": {
         "aggregate": "count",
@@ -33,7 +37,7 @@
         "field": "STATE",
         "type": "nominal",
         "title": "State",
-              "sort": [
+        "sort": [
           "Northern Territory (NT)",
           "Tasmania (TAS)",
           "Victoria (VIC)",
@@ -54,6 +58,7 @@
       },
       "tooltip": [
         {"field": "STATE", "title": "State"},
+        {"field": "VICTIM_INJURY", "title": "Victim Status"},
         {"aggregate": "count", "title": "Number of Incidents"}
       ]
     }
