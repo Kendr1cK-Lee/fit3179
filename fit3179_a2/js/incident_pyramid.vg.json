@@ -1,74 +1,73 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "A population pyramid for the US in 2000.",
-    "data": {
-        "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version.csv"
-    },
-    "spacing": 0,
-    "hconcat": [
-        {
-            "transform": [
-                {"filter": {"field": "SHARK_COMMON_NAME", "equal": "Bull Shark"}}
-            ],
-              "title": "Bull Shark",
-              "mark": "bar",
-              "encoding": {
-                "y": {
-                  "field": "INCIDENT_YEAR", "axis": null, "sort": "descending"
-                },
-                "x": {
-                  "aggregate": "count",
-                  "type": "quantitative",
-                  "title": "No of incidents",
-                  "axis": {"format": "s"},
-                  "sort": "descending"
-                },
-                "color": {
-                  "field": "SHARK_COMMON_NAME",
-                  "scale": {"range": ["#675193", "#ca8861"]},
-                  "legend": null
-                }
-              }
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A population pyramid comparing Bull Shark and Tiger Shark incidents from 1935 to 2024.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version-Refined.csv"
+  },
+  "spacing": 0,
+  "hconcat": [
+    {
+      "transform": [
+        {"filter": "datum.SHARK_COMMON_NAME == 'Bull Shark' && datum.INCIDENT_YEAR >= 1935 && datum.INCIDENT_YEAR <= 2024"}
+      ],
+      "title": "Bull Shark",
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "field": "INCIDENT_YEAR", "axis": null, "sort": "descending"
         },
-        {
-            "width": 20,
-            "view": {"stroke": null},
-            "mark": {
-              "type": "text",
-              "align": "center"
-            },
-            "encoding": {
-              "y": {"field": "INCIDENT_YEAR", "type": "ordinal", "axis": null, "sort": "descending"},
-              "text": {"field": "INCIDENT_YEAR", "type": "quantitative"}
-            }
+        "x": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "title": "No of incidents",
+          "axis": {"format": "s"},
+          "sort": "descending"
         },
-        {
-            "transform": [
-                {"filter": {"field": "SHARK_COMMON_NAME", "equal": "Tiger Shark"}}
-            ],
-              "title": "Great White Shark",
-              "mark": "bar",
-              "encoding": {
-                "y": {
-                  "field": "INCIDENT_YEAR", "axis": null, "sort": "descending"
-                },
-                "x": {
-                  "aggregate": "count",
-                  "type": "quantitative",
-                  "title": "No of incidents",
-                  "axis": {"format": "s"}
-                },
-                "color": {
-                    "field": "SHARK_COMMON_NAME",
-                    "scale": {"range": ["#675193", "#ca8861"]},
-                    "legend": null
-                  }
-              }
+        "color": {
+          "field": "SHARK_COMMON_NAME",
+          "scale": {"range": ["#675193", "#ca8861"]},
+          "legend": null
         }
-    ],
-    "config": {
+      }
+    },
+    {
+      "width": 20,
       "view": {"stroke": null},
-      "axis": {"grid": false}
+      "mark": {
+        "type": "text",
+        "align": "center"
+      },
+      "encoding": {
+        "y": {"field": "INCIDENT_YEAR", "type": "ordinal", "axis": null, "sort": "descending"},
+        "text": {"field": "INCIDENT_YEAR", "type": "quantitative"}
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.SHARK_COMMON_NAME == 'Tiger Shark' && datum.INCIDENT_YEAR >= 1935 && datum.INCIDENT_YEAR <= 2024"}
+      ],
+      "title": "Tiger Shark",
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "field": "INCIDENT_YEAR", "axis": null, "sort": "descending"
+        },
+        "x": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "title": "No of incidents",
+          "axis": {"format": "s"}
+        },
+        "color": {
+          "field": "SHARK_COMMON_NAME",
+          "scale": {"range": ["#675193", "#ca8861"]},
+          "legend": null
+        }
+      }
     }
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"grid": false}
   }
-  
+}

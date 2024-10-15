@@ -75,16 +75,8 @@
           "field": "VICTIM_INJURY",
           "type": "nominal",
           "scale": {
-            "domain": [
-              "Uninjured",
-              "Injured",
-              "Fatal"
-            ],
-            "range": [
-              "#00A36C",
-              "#FFA500",
-              "#FF0000"
-            ]
+            "domain": ["Uninjured", "Injured", "Fatal"],
+            "range": ["#00A36C", "#FFA500", "#FF0000"]
           },
           "title": "Victim Status"
         },
@@ -97,6 +89,7 @@
           {"field": "STATE", "type": "nominal", "title": "State"},
           {"field": "LATITUDE", "type": "quantitative", "format": ".7f", "title": "Latitude"},
           {"field": "LONGITUDE", "type": "quantitative", "format": ".7f", "title": "Longitude"},
+          {"field": "SHARK_COMMON_NAME", "type": "nominal", "title": "Shark Species"},
           {"field": "VICTIM_INJURY", "type": "nominal", "title": "Victim Status"}
         ]
       }

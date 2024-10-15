@@ -6,21 +6,16 @@
     "data": {
         "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version.csv"
     },
-    "transform": [
-        {
-            "calculate": "floor(datum.INCIDENT_YEAR / 10) * 10",
-            "as": "Decade"
-        }
-    ],
     "mark": {
         "type": "line",
-        "point": true
+        "point": true,
+        "strokeWidth": 3.5
     },
     "encoding": {
         "x": {
-            "field": "Decade",
+            "field": "INCIDENT_YEAR",
             "type": "quantitative",
-            "title": "Decade"
+            "title": "Incident Year"
         },
         "y": {
             "aggregate": "count",
@@ -28,8 +23,115 @@
             "title": "Number of Incidents"
         },
         "tooltip": [
-            {"field": "Decade", "type": "quantitative", "title": "Decade"},
+            {"field": "INCIDENT_YEAR", "type": "quantitative", "title": "Incident Year"},
             {"aggregate": "count", "title": "Number of Incidents"}
         ]
     }
+}
+
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "vconcat": [
+        {
+            "width": 800,
+            "height": 450,
+            "title": "Shark attacks across Australia from 1791 to 2024",
+            "projection": {"type": "mercator"},
+            "layer": [
+                {
+                    "data": {
+                    "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/js/output_without_graticules.json",
+                    "format": {
+                        "type": "topojson",
+                        "feature": "au_eez_pol_april2022"
+                    }
+                },
+                "mark": {
+                    "type": "geoshape",
+                    "fill": "lightblue",
+                    "stroke": "lightblue"
+                }
+            },
+            {
+                "data": {
+                    "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/js/output_without_graticules.json",
+                    "format": {
+                        "type": "topojson",
+                        "feature": "ne_10m_admin_1_states_provinces"
+                    }
+                },
+                "mark": {
+                    "type": "geoshape",
+                    "fill": "lightgrey",
+                    "stroke": "white"
+                }
+            },
+            {
+                "data": {
+                    "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version.csv"
+                },
+                "mark": {"type": "circle"},
+                "encoding": {
+                    "longitude": {"field": "LONGITUDE", "type": "quantitative"},
+                    "latitude": {"field": "LATITUDE", "type": "quantitative"},
+                    "color": {
+                        "field": "VICTIM_INJURY",
+                        "type": "nominal",
+                        "scale": {
+                            "domain": [
+                                "Uninjured",
+                                "Injured",
+                                "Fatal"
+                            ],
+                            "range": [
+                                "#00A36C",
+                                "#FFA500",
+                                "#FF0000"
+                            ]
+                        },
+                        "title": "Victim Status"
+                    },
+                    "opacity": {"value": 0.8},
+                    "tooltip": [
+                        {"field": "INCIDENT_MONTH", "type": "nominal", "title": "Incident Month"},
+                        {"field": "INCIDENT_YEAR", "type": "quantitative", "title": "Incident Year"},
+                        {"field": "STATE", "type": "nominal", "title": "State"},
+                        {"field": "LATITUDE", "type": "quantitative", "format": ".7f", "title": "Latitude"},
+                        {"field": "LONGITUDE", "type": "quantitative", "format": ".7f", "title": "Longitude"},
+                        {"field": "VICTIM_INJURY", "type": "nominal", "title": "Victim Status"}
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "width": 800,
+        "height": 450,
+        "title": "Shark Attacks Across Australia Over Time",
+        "data": {
+            "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version.csv"
+        },
+        "mark": {
+            "type": "line",
+            "point": true
+        },
+        "encoding": {
+            "x": {
+                "field": "INCIDENT_YEAR",
+                "type": "temporal",
+                "timeUnit": "year",
+                "title": "Incident Year"
+            },
+            "y": {
+                "aggregate": "count",
+                "type": "quantitative",
+                "title": "Number of Incidents"
+            },
+            "tooltip": [
+                {"field": "INCIDENT_YEAR", "type": "temporal", "timeUnit": "year", "title": "Incident Year"},
+                {"aggregate": "count", "type": "quantitative", "title": "Number of Incidents"}
+            ]
+        }
+    }
+]
 }

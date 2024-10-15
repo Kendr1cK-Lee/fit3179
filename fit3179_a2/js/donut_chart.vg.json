@@ -1,0 +1,58 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 332,
+    "height": 332,
+    "title": "Shark Attacks by Species (%)",
+    "data": {
+      "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version.csv"
+    },
+
+    "transform": [
+      {
+        "calculate": "datum.SHARK_COMMON_NAME == 'Bull Shark' || datum.SHARK_COMMON_NAME == 'Great White Shark' || datum.SHARK_COMMON_NAME == 'Tiger Shark' || datum.SHARK_COMMON_NAME == 'Wobbegong Shark' ? datum.SHARK_COMMON_NAME : 'Other Sharks'",
+        "as": "Shark_Group"
+      },
+      {
+        "aggregate": [{"op": "count", "field": "NO_OF_INCIDENTS", "as": "Total_Incidents"}],
+        "groupby": ["Shark_Group"]
+      },
+      {
+        "window": [{"op": "sum", "field": "Total_Incidents", "as": "Overall_Total"}],
+        "frame": [null, null]
+      },
+      {
+        "calculate": "datum.Total_Incidents / datum.Overall_Total * 100",
+        "as": "Percentage"
+      }
+    ],
+    "mark": {
+      "type": "arc",
+      "innerRadius": 60,
+      "outerRadius": 125,
+      "stroke": "white",
+      "strokeWidth": 5
+    },
+    "encoding": {
+      "theta": {
+        "field": "Total_Incidents",
+        "type": "quantitative",
+        "stack": true,
+        "title": "Incident Percentage"
+      },
+      "color": {
+        "field": "Shark_Group",
+        "type": "nominal",
+        "scale": {
+          "domain": ["Bull Shark", "Great White Shark", "Tiger Shark", "Wobbegong Shark", "Other Sharks"],
+          "range": ["#8B4513", "#008080", "#00008B", "#800080", "#D3D3D3"]
+        },
+        "title": "Shark Species"
+      },
+      "tooltip": [
+        {"field": "Shark_Group", "type": "nominal", "title": "Shark Species"},
+        {"field": "Total_Incidents", "type": "quantitative", "title": "Number of Incidents"},
+        {"field": "Percentage", "type": "quantitative", "title": "Percentage (%)", "format": ".2f"}
+      ]
+    }
+  }
+  

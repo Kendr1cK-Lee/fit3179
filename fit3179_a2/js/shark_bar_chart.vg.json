@@ -9,10 +9,9 @@
     "mark": "bar",
     "encoding": {
         "x": {
-            "field": "SHARK_COMMON_NAME",
+            "field": "VICTIM_INJURY",
             "type": "nominal",
-            "title": "Shark Name",
-            "sort": {"op": "count"}
+            "title": "Victim Injury"
         },
         "y": {
             "aggregate": "count",
@@ -20,7 +19,7 @@
             "title": "No of incidents"
         },
         "tooltip": [
-            {"field": "SHARK_COMMON_NAME", "title": "Shark Species"},
+            {"field": "VICTIM_INJURY", "title": "VICTIM_INJURY"},
             {"aggregate": "count", "title": "Number of Incidents"}
           ]
     }

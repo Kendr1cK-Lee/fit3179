@@ -4,7 +4,7 @@
     "width": 800,
     "height": 200,
     "data": {
-        "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version.csv"
+        "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version-Isotype.csv"
     },
     "mark": {"type": "point", "filled": true},
     "encoding": {

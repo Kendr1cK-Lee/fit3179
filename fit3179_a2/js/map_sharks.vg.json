@@ -72,6 +72,10 @@
         },
         {
           "filter": "datum.SHARK_COMMON_NAME == 'Wobbegong Shark' ? wobbegongshark_selection : true"
+        },
+        {
+          "calculate": "isValid(datum.SHARK_LENGTH_M) ? datum.SHARK_LENGTH_M : 'Unknown'",
+          "as": "SHARK_LENGTH_DISPLAY"
         }
       ],
       "mark": {"type": "circle"},
@@ -93,7 +97,7 @@
           {"field": "LATITUDE", "type": "quantitative", "title": "Latitude"},
           {"field": "LONGITUDE", "type": "quantitative", "title": "Longitude"},
           {"field": "SHARK_COMMON_NAME", "type": "nominal", "title": "Shark Species"},
-          {"field": "SHARK_LENGTH_M", "type": "quantitative", "title": "Shark Length (m)"}
+          {"field": "SHARK_LENGTH_DISPLAY", "type": "nominal", "title": "Shark Length (m)"}
         ]
       }
     }

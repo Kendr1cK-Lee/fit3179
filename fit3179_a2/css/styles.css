@@ -5,78 +5,121 @@
 	/* max-width: auto;
 	max-height: auto; */
 	text-align: center;
+	font-size: 17px;
 }
 
 
 /*id selectors*/
 #id-page {
-	border: 10px solid purple;
-	/* max-width: none;
-	max-height: none; */
-	/* margin:0 auto; */
-	/* padding:5px; */
-	/* position:relative; */
-  }
+	background-color: #C0E4FC;
+	max-width: 1300px;
+	margin: auto;
+	border: 2px solid black;
+	border-radius: 25px 25px 0px 0px;
+}
 
 #id-header {
-	border: 2px solid red;
-	/* height: auto;
-	width: auto; */
-  }
-
+	/* border: 2px solid red; */
+	max-width: 1300px;
+	margin: auto;
+	padding-top: 15px;
+	padding-bottom: 5px;
+}
 
 #id-intro-div {
 	height: auto;
-	padding: 20px;
-	border: 3px solid green;
+	padding-bottom: 15px;
+	margin-left: 40px;
+	margin-right: 40px;
+	/* border: 3px solid green; */
 	text-align: left;
 	max-height: fit-content;
+	flex-wrap: wrap;
 }
 
-#id-split-3-div {
-	display: flex;
-	/* justify-content: space-between; */
-	max-width: none;
-	/* margin-top: 20px; */
-}
-
-#id-footer {
-	border:2px solid red;
-	/* background-color: lightgrey; */
-	color: black;
-	font-weight: bold;
-	/* max-width: none;
-	max-height: none; */
-  }
-
-
-
-
-
-.column {
-	float: left;
-	padding: 10px;
-	height: 300px; /* Should be removed. Only for demonstration */
-  }
-
-
-#id-main-div {
-	/* border: 3px solid black; */
-}
-
-#id-title-div {
-	max-width: fit-content;
-	margin-left: auto;
-	margin-right: auto;
-	border: 3px solid green;
-  }
-
-
-#id-map-div {
+#id-map {
 	width: 100%; /* or set a specific width like 800px */
 	display: flex;
 	justify-content: center;
+}
+
+#id-para-div {
+	height: auto;
+	margin-left: 40px;
+	margin-right: 40px;
+	/* border: 3px solid green; */
+	text-align: left;
+	max-height: fit-content;
+	flex-wrap: wrap;
+}
+
+#id-split-div {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
 	margin-top: 20px;
+}
+
+#id-left-section-div {
+	flex: 1;
+	padding: 10px;
+	margin-left: 40px;
+	/* border: 3px solid green; */
+}
+
+#id-right-section-div {
+	flex: 1;
+	padding-top: 0px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: left;
+	margin-right: 40px;
+	/* border: 3px solid green; */
+}
+
+#id-left-section-div-2 {
+	flex: 1;
+	margin-left: 40px;
+	margin-right: auto;
+	/* border: 3px solid green; */
+}
+
+#id-right-section-div-2 {
+	flex: 1;
+	text-align: left;
+	margin-right: 40px;
+	/* border: 3px solid green; */
+}
+
+
+
+
+
+
+#id-footer {
+	/* background-color: lightgrey; */
+	background-color: #36454F;
+	font-weight: bold;
+	border: 3px solid #36454F;
+	color: white;
+	font-size: 14px;
+}
+
+
+.class-uninjured {
+	color: #00A36C;
+	font-weight: bolder;
+}
+
+.class-injured {
+	color: #FFA500  ;
+	font-weight: bold;
+}
+
+.class-fatal {
+	color: #FF0000;
+	font-weight: bold;
 }
 
 
@@ -92,7 +135,7 @@
 	width: 800px; */
 }
 
-#bar_chart {
+#stackedbar_chart {
 	margin: auto;
 	/* top:100px;
 	bottom: 100px; 
@@ -103,7 +146,7 @@
 }
 
 
-#pie_chart {
+#waffle_chart {
 	margin: auto;
 	/* top:100px;
 	bottom: 100px; 
@@ -113,23 +156,14 @@
 	width: 800px; */
 }
 
+#map_shark_chart {
+	margin: auto;
+}
 
+#donut_chart {
+	margin: auto;
+}
 
-.split-div {
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-	margin-top: 20px;
-  }
-
-  /* Left section styling */
-  .left-section {
-	flex: 1; /* Takes up equal space */
-	padding: 10px;
-  }
-
-  /* Right section styling */
-  .right-section {
-	flex: 1; /* Takes up equal space */
-	padding: 10px;
-  }
+#boxplot_chart {
+	margin: auto;
+}
