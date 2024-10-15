@@ -1,82 +1,83 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 300,
-    "height": 300,
-    "title": "Distribution of Shark Incident Outcomes (Percentage)",
-    "data": {
-      "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version.csv"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 300,
+  "height": 300,
+  "title": "Shark Attacks by Victim Status (%)",
+  "data": {
+    "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version.csv"
+  },
+  "transform": [
+    {
+      "aggregate": [{"op": "count", "as": "count"}],
+      "groupby": ["VICTIM_INJURY"]
     },
-    "transform": [
-      {
-        "aggregate": [{"op": "count", "as": "count"}],
-        "groupby": ["VICTIM_INJURY"]
-      },
-      {
-        "window": [{"op": "sum", "field": "count", "as": "total"}],
-        "frame": [null, null]
-      },
-      {
-        "calculate": "datum.count / datum.total * 100",
-        "as": "percentage"
-      },
-      {
-        "calculate": "if(datum.VICTIM_INJURY == 'Fatal', 0, if(datum.VICTIM_INJURY == 'Injured', 1, 2))",
-        "as": "sortOrder"
-      },
-      {
-        "window": [
-          {"op": "rank", "as": "rank"},
-          {"op": "sum", "field": "percentage", "as": "cumulative_percentage"}
-        ],
-        "sort": [{"field": "sortOrder", "order": "ascending"}]
-      },
-      {
-        "calculate": "datum.cumulative_percentage - datum.percentage",
-        "as": "start"
-      },
-      {
-        "calculate": "floor(datum.start)",
-        "as": "start_floor"
-      },
-      {
-        "calculate": "ceil(datum.cumulative_percentage)",
-        "as": "end_ceil"
-      },
-      {
-        "calculate": "sequence(datum.start_floor + 1, datum.end_ceil)",
-        "as": "position"
-      },
-      {"flatten": ["position"]},
-      {
-        "calculate": "floor((datum.position - 1) / 10)",
-        "as": "row"
-      },
-      {
-        "calculate": "(datum.position - 1) % 10",
-        "as": "column"
-      }
-    ],
-    "mark": {
-      "type": "rect",
-      "stroke": "white",
-      "strokeWidth": 2
+    {
+      "window": [{"op": "sum", "field": "count", "as": "total"}],
+      "frame": [null, null]
     },
-    "encoding": {
-      "x": {"field": "column", "type": "ordinal", "axis": null},
-      "y": {"field": "row", "type": "ordinal", "axis": null, "sort": "descending"},
-      "color": {
-        "field": "VICTIM_INJURY",
-        "type": "nominal",
-        "scale": {
-          "domain": ["Fatal", "Injured", "Uninjured"],
-          "range": ["#FF0000", "#FFA500", "#00A36C"]
-        },
-        "sort": ["Fatal", "Injured", "Uninjured"],
-        "title": "Victim Status"
-      },
-      "tooltip": [
-        {"field": "VICTIM_INJURY", "title": "Victim Status"},
-        {"field": "percentage", "title": "Percentage", "format": ".2f"}
-      ]
+    {
+      "calculate": "datum.count / datum.total * 100",
+      "as": "percentage"
+    },
+    {
+      "calculate": "if(datum.VICTIM_INJURY == 'Fatal', 0, if(datum.VICTIM_INJURY == 'Injured', 1, 2))",
+      "as": "sortOrder"
+    },
+    {
+      "window": [
+        {"op": "rank", "as": "rank"},
+        {"op": "sum", "field": "percentage", "as": "cumulative_percentage"}
+      ],
+      "sort": [{"field": "sortOrder", "order": "ascending"}]
+    },
+    {
+      "calculate": "datum.cumulative_percentage - datum.percentage",
+      "as": "start"
+    },
+    {
+      "calculate": "floor(datum.start)",
+      "as": "start_floor"
+    },
+    {
+      "calculate": "ceil(datum.cumulative_percentage)",
+      "as": "end_ceil"
+    },
+    {
+      "calculate": "sequence(datum.start_floor + 1, datum.end_ceil)",
+      "as": "position"
+    },
+    {"flatten": ["position"]},
+    {
+      "calculate": "floor((datum.position - 1) / 10)",
+      "as": "row"
+    },
+    {
+      "calculate": "(datum.position - 1) % 10",
+      "as": "column"
     }
+  ],
+  "mark": {
+    "type": "rect",
+    "stroke": "white",
+    "strokeWidth": 2
+  },
+  "encoding": {
+    "x": {"field": "column", "type": "ordinal", "axis": null},
+    "y": {"field": "row", "type": "ordinal", "axis": null, "sort": "descending"},
+    "color": {
+      "field": "VICTIM_INJURY",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Fatal", "Injured", "Uninjured"],
+        "range": ["#FF0000", "#FFA500", "#00A36C"]
+      },
+      "sort": ["Fatal", "Injured", "Uninjured"],
+      "title": "Victim Status"
+    },
+    "tooltip": [
+      {"field": "VICTIM_INJURY", "title": "Victim Status"},
+      {"field": "percentage", "title": "Percentage (%)", "format": ".2f"},
+      {"field": "count", "title": "Number of Victims"}
+    ]
   }
+}
