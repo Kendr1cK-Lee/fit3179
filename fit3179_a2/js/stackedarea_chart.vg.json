@@ -1,15 +1,15 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 600,
+    "width": 700,
     "height": 400,
     "title": "Shark Attacks by Species",
     "data": {
       "url": "https://raw.githubusercontent.com/Kendr1cK-Lee/fit3179/refs/heads/main/fit3179_a2/data/Australian-Shark-Incident-Database-Public-Version-Refined.csv"
     },
-      "params": [
+    "params": [
       {
         "name": "bullshark_selection",
-        "value": false,
+        "value": true,
         "bind": {
           "input": "checkbox",
           "name": "Display Bull Shark"
@@ -17,7 +17,7 @@
       },
       {
         "name": "greatwhiteshark_selection",
-        "value": false,
+        "value": true,
         "bind": {
           "input": "checkbox",
           "name": "Display Great White Shark"
@@ -25,7 +25,7 @@
       },
       {
         "name": "tigershark_selection",
-        "value": false,
+        "value": true,
         "bind": {
           "input": "checkbox",
           "name": "Display Tiger Shark"
@@ -33,7 +33,7 @@
       },
       {
         "name": "wobbegongshark_selection",
-        "value": false,
+        "value": true,
         "bind": {
           "input": "checkbox",
           "name": "Display Wobbegong Shark"
@@ -43,7 +43,7 @@
     "transform": [
       {
         "filter": "datum.SHARK_COMMON_NAME == 'Bull Shark' ? bullshark_selection : true"
-        },
+      },
       {
         "filter": "datum.SHARK_COMMON_NAME == 'Great White Shark' ? greatwhiteshark_selection : true"
       },
@@ -52,40 +52,48 @@
       },
       {
         "filter": "datum.SHARK_COMMON_NAME == 'Wobbegong Shark' ? wobbegongshark_selection : true"
+      },
+      {
+        "aggregate": [{
+          "op": "count",
+          "as": "Incident_Count"
+        }],
+        "groupby": ["INCIDENT_YEAR", "SHARK_COMMON_NAME"]
       }
-        ],
+    ],
     "mark": {
-      "type": "area",
-      "tooltip": true
+      "type": "line",
+      "point": true
     },
     "encoding": {
       "x": {
         "field": "INCIDENT_YEAR",
         "type": "ordinal",
         "title": "Year",
-        "axis": {"labelAngle": 0}
+        "axis": {
+          "labels": false,
+          "ticks": false,
+          "domain": false
+        }
       },
       "y": {
-        "aggregate": "count",
-        "field": "NO_OF_INCIDENTS",
+        "field": "Incident_Count",
         "type": "quantitative",
-        "title": "Number of Incidents",
-        "stack": "zero"
+        "title": "Number of Incidents"
       },
       "color": {
         "field": "SHARK_COMMON_NAME",
         "type": "nominal",
         "title": "Shark Species",
         "scale": {
-              "domain": ["Bull Shark", "Great White Shark", "Tiger Shark", "Wobbegong Shark"],
-              "range": ["#8B4513", "#008080", "#00008B", "#800080"]
-            }
-            },
+          "domain": ["Bull Shark", "Great White Shark", "Tiger Shark", "Wobbegong Shark"],
+          "range": ["#8B4513", "#008080", "#00008B", "#800080"]
+        }
+      },
       "tooltip": [
         {"field": "INCIDENT_YEAR", "type": "ordinal", "title": "Year"},
         {"field": "SHARK_COMMON_NAME", "type": "nominal", "title": "Shark Species"},
-        {"aggregate": "count", "field": "NO_OF_INCIDENTS", "type": "quantitative", "title": "Number of Incidents"}
+        {"field": "Incident_Count", "type": "quantitative", "title": "Number of Incidents"}
       ]
     }
-  }
-  
+}
